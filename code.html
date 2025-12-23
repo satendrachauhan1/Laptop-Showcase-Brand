@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Laptop Brand Showcase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>🌍 Global Laptop Brand Showcase</h1>
+    <p>Explore laptop brands used all over the world</p>
+    <button class="cart-btn" onclick="showCart()">🛒 Cart</button>
+</header>
+
+<!-- Search -->
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search laptop brand..." onkeyup="searchBrand()">
+</div>
+
+<section class="brand-section">
+<div class="brand-container">
+
+<!-- Apple -->
+<div class="brand-card">
+    <img src="images/apple.jpg">
+    <h3>Apple</h3>
+    <p>MacBook Air & Pro</p>
+    <h4>₹90,000 – ₹2,50,000</h4>
+    <button onclick="addToCart('Apple', 120000)">Add to Cart</button>
+</div>
+
+<!-- Dell -->
+<div class="brand-card">
+    <img src="images/dell.jpg">
+    <h3>Dell</h3>
+    <p>Inspiron, XPS, Alienware</p>
+    <h4>₹45,000 – ₹2,20,000</h4>
+    <button onclick="addToCart('Dell', 60000)">Add to Cart</button>
+</div>
+
+<!-- HP -->
+<div class="brand-card">
+    <img src="images/hp.jpg">
+    <h3>HP</h3>
+    <p>Pavilion, Victus, Omen</p>
+    <h4>₹40,000 – ₹2,00,000</h4>
+    <button onclick="addToCart('HP', 55000)">Add to Cart</button>
+</div>
+
+<!-- Lenovo -->
+<div class="brand-card">
+    <img src="images/lenovo.jpg">
+    <h3>Lenovo</h3>
+    <p>IdeaPad, ThinkPad, Legion</p>
+    <h4>₹35,000 – ₹1,80,000</h4>
+    <button onclick="addToCart('Lenovo', 50000)">Add to Cart</button>
+</div>
+
+<!-- ASUS -->
+<div class="brand-card">
+    <img src="images/asus.jpg">
+    <h3>ASUS</h3>
+    <p>VivoBook, ROG, TUF</p>
+    <h4>₹40,000 – ₹2,10,000</h4>
+    <button onclick="addToCart('ASUS', 58000)">Add to Cart</button>
+</div>
+
+<!-- Acer -->
+<div class="brand-card">
+    <img src="images/acer.jpg">
+    <h3>Acer</h3>
+    <p>Aspire, Nitro, Predator</p>
+    <h4>₹30,000 – ₹1,70,000</h4>
+    <button onclick="addToCart('Acer', 45000)">Add to Cart</button>
+</div>
+
+<!-- MSI -->
+<div class="brand-card">
+    <img src="images/msi.jpg">
+    <h3>MSI</h3>
+    <p>Gaming & Creator Laptops</p>
+    <h4>₹70,000 – ₹3,00,000</h4>
+    <button onclick="addToCart('MSI', 90000)">Add to Cart</button>
+</div>
+
+<!-- Samsung -->
+<div class="brand-card">
+    <img src="images/samsung.jpg">
+    <h3>Samsung</h3>
+    <p>Galaxy Book Series</p>
+    <h4>₹50,000 – ₹1,50,000</h4>
+    <button onclick="addToCart('Samsung', 65000)">Add to Cart</button>
+</div>
+
+<!-- Microsoft -->
+<div class="brand-card">
+    <img src="images/microsoft.jpg">
+    <h3>Microsoft</h3>
+    <p>Surface Laptops</p>
+    <h4>₹75,000 – ₹2,20,000</h4>
+    <button onclick="addToCart('Microsoft', 90000)">Add to Cart</button>
+</div>
+
+<!-- LG -->
+<div class="brand-card">
+    <img src="images/lg.jpg">
+    <h3>LG</h3>
+    <p>LG Gram Ultra-light</p>
+    <h4>₹80,000 – ₹1,90,000</h4>
+    <button onclick="addToCart('LG', 95000)">Add to Cart</button>
+</div>
+
+<!-- Razer -->
+<div class="brand-card">
+    <img src="images/razer.jpg">
+    <h3>Razer</h3>
+    <p>High-end Gaming Laptops</p>
+    <h4>₹1,50,000 – ₹4,00,000</h4>
+    <button onclick="addToCart('Razer', 180000)">Add to Cart</button>
+</div>
+
+</div>
+</section>
+
+<!-- Cart -->
+<div id="cartBox" class="cart-box">
+    <h2>Your Cart</h2>
+    <ul id="cartItems"></ul>
+    <h3 id="totalPrice"></h3>
+    <button onclick="placeOrder()">Place Order</button>
+</div>
+
+<footer>
+    <p>© 2025 Global Laptop Showcase</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

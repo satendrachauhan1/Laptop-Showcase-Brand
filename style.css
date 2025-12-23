@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f3f6;
+}
+
+/* Header */
+header {
+    background-color: #2874f0;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 14px;
+}
+
+/* Cart Button */
+.cart-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #ff9f00;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-btn:hover {
+    background-color: #fb641b;
+}
+
+/* Search Bar */
+.search-box {
+    text-align: center;
+    margin: 20px;
+}
+
+.search-box input {
+    width: 60%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #2874f0;
+    border-radius: 5px;
+}
+
+/* Brand Section */
+.brand-section {
+    padding: 20px;
+}
+
+.brand-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Brand Card */
+.brand-card {
+    background-color: white;
+    width: 230px;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.brand-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.brand-card h3 {
+    margin: 10px 0 5px;
+}
+
+.brand-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.brand-card h4 {
+    color: green;
+    margin: 8px 0;
+}
+
+/* Buttons */
+.brand-card button {
+    background-color: #fb641b;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.brand-card button:hover {
+    background-color: #e85b0c;
+}
+
+/* Cart Box */
+.cart-box {
+    display: none;
+    background-color: white;
+    margin: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #2874f0;
+}
+
+.cart-box h2 {
+    margin-bottom: 10px;
+}
+
+.cart-box ul {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.cart-box li {
+    padding: 5px 0;
+}
+
+.cart-box button {
+    background-color: #2874f0;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.cart-box button:hover {
+    background-color: #1b5ed8;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    margin-top: 30px;
+}
+/* Order Form */
+.order-form {
+    display: none;
+    background: white;
+    margin: 30px;
+    padding: 20px;
+    border: 2px solid #2874f0;
+    border-radius: 8px;
+}
+
+.order-form h2 {
+    margin-bottom: 10px;
+}
+
+.order-form input,
+.order-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.order-form button {
+    background: #2874f0;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.brand-card button:disabled {
+    cursor: not-allowed;
+    opacity: 0.9;
+}

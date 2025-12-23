@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Showcase - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header (same style as showcase) -->
+    <header class="auth-header">
+        <h1>Laptop Brand Showcase</h1>
+        <p>Sign in to explore the best laptop brands.</p>
+    </header>
+
+    <!-- Auth Section -->
+    <section class="auth-section">
+        <div class="auth-card glass">
+            <div class="auth-tabs">
+                <button id="loginTab" class="active">Login</button>
+                <button id="registerTab">Register</button>
+            </div>
+
+            <!-- Login form -->
+            <form id="loginForm" class="auth-form">
+                <h2>Sign in to continue</h2>
+
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="you@example.com" required>
+                <span class="error" id="loginEmailError"></span>
+
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="••••••••" required minlength="6">
+                <span class="error" id="loginPasswordError"></span>
+
+                <button type="submit" class="btn primary-btn full-width">Login</button>
+                <p class="helper-text">New here? Click “Register” to create an account.</p>
+            </form>
+
+            <!-- Register form -->
+            <form id="registerForm" class="auth-form hidden">
+                <h2>Create your account </h2>
+
+                <label for="regName">Full Name</label>
+                <input type="text" id="regName" placeholder="Your name" required>
+                <span class="error" id="regNameError"></span>
+
+                <label for="regEmail">Email</label>
+                <input type="email" id="regEmail" placeholder="you@example.com" required>
+                <span class="error" id="regEmailError"></span>
+
+                <label for="regPassword">Password</label>
+                <input type="password" id="regPassword" placeholder="At least 6 characters" required minlength="6">
+                <span class="error" id="regPasswordError"></span>
+
+                <button type="submit" class="btn primary-btn full-width">Create account</button>
+                <p class="helper-text">Already have an account? Click “Login”.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Laptop Showcase | Bengaluru India</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
