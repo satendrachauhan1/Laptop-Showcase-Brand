@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laptop Showcase - Login</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
 </head>
+
 <body>
 
     <!-- Header (same style as showcase) -->
-    <header class="auth-header">
-        <h1>Laptop Brand Showcase</h1>
-        <p>Sign in to explore the best laptop brands.</p>
-    </header>
+
 
     <!-- Auth Section -->
     <section class="auth-section">
         <div class="auth-card glass">
+
+            <header class="auth-header">
+                <h1 class="auth-title">Laptop Brand Showcase</h1>
+                <p class="auth-subtitle">Sign in to explore the best laptop brands.</p>
+            </header>
+
             <div class="auth-tabs">
                 <button id="loginTab" class="active">Login</button>
                 <button id="registerTab">Register</button>
             </div>
 
-            <!-- Login form -->
+            <!-- Login Form -->
             <form id="loginForm" class="auth-form">
                 <h2>Sign in to continue</h2>
 
@@ -38,9 +44,9 @@
                 <p class="helper-text">New here? Click “Register” to create an account.</p>
             </form>
 
-            <!-- Register form -->
+            <!-- Register Form -->
             <form id="registerForm" class="auth-form hidden">
-                <h2>Create your account </h2>
+                <h2>Create your account</h2>
 
                 <label for="regName">Full Name</label>
                 <input type="text" id="regName" placeholder="Your name" required>
@@ -57,14 +63,15 @@
                 <button type="submit" class="btn primary-btn full-width">Create account</button>
                 <p class="helper-text">Already have an account? Click “Login”.</p>
             </form>
+
         </div>
+
+        <!-- Footer -->
+        <footer class="auth-footer">
+            <p>© 2025 Laptop Showcase | Bengaluru India</p>
+        </footer>
     </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 Laptop Showcase | Bengaluru India</p>
-    </footer>
-
     <script src="script.js"></script>
 </body>
+
 </html>

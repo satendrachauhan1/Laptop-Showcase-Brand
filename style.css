@@ -28,15 +28,15 @@ header p {
 
 /* Cart Button */
 .cart-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     background-color: #ff9f00;
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .cart-btn:hover {

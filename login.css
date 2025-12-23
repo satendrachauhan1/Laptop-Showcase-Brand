@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+}
+
+/* CENTERING FIX */
+.auth-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centers card vertically */
+    align-items: center;
+    padding: 1rem;
+}
+
+/* CARD */
+.auth-card {
+    background: rgba(255, 255, 255, 0.85);
+    width: 430px;
+    max-width: 95vw;
+    padding: 2.5rem;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.18);
+}
+
+.auth-card.glass {
+    backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+}
+
+/* HEADER */
+.auth-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background: transparent;
+}
+
+.auth-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1765c1;
+}
+
+.auth-subtitle {
+    font-size: 0.98rem;
+    color: #68707a;
+}
+
+/* TABS */
+.auth-tabs {
+    display: flex;
+    margin-bottom: 1.8rem;
+}
+
+.auth-tabs button {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 0.7rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #555;
+    cursor: pointer;
+    border-bottom: 2.5px solid transparent;
+}
+
+.auth-tabs button.active {
+    color: #1976d2;
+    border-bottom: 2.5px solid #1976d2;
+}
+
+/* FORMS */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.auth-form h2 {
+    color: #1976d2;
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+}
+
+.auth-form label {
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.auth-form input {
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    border: 1.2px solid #b0bec5;
+    background: #f7fafc;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #1976d2;
+    background: #e3f2fd;
+}
+
+.auth-footer {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #888;
+    background: transparent;
+    text-align: center;
+}
+
+
+.auth-footer p {
+    max-width: 90vw;
+}
+
+
+/* BUTTON */
+.btn.primary-btn {
+    margin-top: 0.6rem;
+    padding: 0.7rem;
+    border-radius: 6px;
+    border: none;
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
+}
+
+.btn.primary-btn:hover {
+    background: linear-gradient(90deg, #1565c0 60%, #1976d2 100%);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.helper-text {
+    font-size: 0.9rem;
+    color: #888;
+    text-align: center;
+}
+
+/* HIDE FORM */
+.hidden {
+    display: none;
+}
+
+/* MOBILE */
+@media (max-width: 500px) {
+    .auth-card {
+        padding: 1.5rem;
+    }
+}

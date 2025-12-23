@@ -1,141 +1,497 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Laptop Brand Showcase</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Laptop Brand Showcase</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .item-count {
+      background: #ff6b35;
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 12px;
+      margin-left: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .dec-btn {
+      display: none;
+    }
+
+    /* User profile popup styles */
+    #userProfileBtn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      padding: 4px;
+      border-radius: 50%;
+      transition: background-color 0.3s ease;
+    }
+
+    #userProfileBtn:hover {
+      background-color: wheat;
+    }
+
+    #userPopup {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 56px; /* moved down for better spacing under profile button */
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      padding: 12px 20px;
+      width: 220px;
+      font-family: Inter, sans-serif;
+      font-size: 0.95rem;
+      color: #222;
+      z-index: 1000;
+      transition: opacity 160ms ease, transform 160ms ease;
+      transform-origin: top right;
+    }
+
+    #userPopup button {
+      background: #1976d2;
+      border: none;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    #userPopup button:disabled {
+      background-color: #aaa;
+      cursor: default;
+    }
+
+    #userPopup button:hover:not(:disabled) {
+      background-color: #135aab;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header > div:first-child {
+      flex-grow: 1;
+      min-width: 200px;
+    }
+
+    header > div:last-child {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      min-width: 120px;
+      justify-content: flex-end;
+    }
+
+    /* Override absolute cart styles and make header buttons responsive */
+    .cart-btn {
+      position: static;
+      background-color: #ff9f00;
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    .cart-btn:hover { background-color: #fb641b; }
+
+    /* style the small count bubble inside cart button */
+    .cart-btn #cartCount {
+      background: #ff6b35;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-left: 8px;
+      font-weight: 700;
+    }
+
+    #userProfileBtn {
+      background: transparent;
+      border: none;
+      color: #fff;
+      background-color: white;
+      font-size: 20px;
+      padding: 6px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 14px 18px;
+      }
+
+      header > div:first-child { width: 100%; }
+
+      header > div:last-child {
+        width: 100%;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .search-box input { width: 90%; }
+    }
+  </style>
 </head>
+
 <body>
+  <header>
+    <div>
+      <h1>🌍 Global Laptop Brand Showcase</h1>
+      <p>Explore laptop brands used all over the world</p>
+    </div>
 
-<header>
-    <h1>🌍 Global Laptop Brand Showcase</h1>
-    <p>Explore laptop brands used all over the world</p>
-    <button class="cart-btn" onclick="showCart()">🛒 Cart</button>
-</header>
+    <div>
+      <button class="cart-btn" onclick="window.location.href='cart.html'">
+        🛒 Cart
+        <span
+          id="cartCount"
+          style="background:#ff6b35;color:#fff;padding:2px 8px;border-radius:12px;margin-left:8px;font-weight:700;"
+          >0</span
+        >
+      </button>
 
-<!-- Search -->
-<div class="search-box">
-    <input type="text" id="searchInput" placeholder="Search laptop brand..." onkeyup="searchBrand()">
-</div>
+      <button id="userProfileBtn" aria-label="User Profile">👤</button>
 
-<section class="brand-section">
-<div class="brand-container">
+      <div id="userPopup" role="dialog" aria-modal="true" aria-labelledby="userName">
+        <div id="userName" style="font-weight:700; font-size:1.1rem; color:#1976d2; margin-bottom:6px;">User
+          Name</div>
+        <div id="userEmail" style="color:#555; margin-bottom:12px;">user@example.com</div>
+        <button id="ordersPageBtn">View Orders</button>
+      </div>
+    </div>
+  </header>
 
-<!-- Apple -->
-<div class="brand-card">
-    <img src="images/apple.jpg">
-    <h3>Apple</h3>
-    <p>MacBook Air & Pro</p>
-    <h4>₹90,000 – ₹2,50,000</h4>
-    <button onclick="addToCart('Apple', 120000)">Add to Cart</button>
-</div>
+  <!-- Search -->
+  <div class="search-box">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search laptop brand..."
+      onkeyup="searchBrand()"
+    />
+  </div>
 
-<!-- Dell -->
-<div class="brand-card">
-    <img src="images/dell.jpg">
-    <h3>Dell</h3>
-    <p>Inspiron, XPS, Alienware</p>
-    <h4>₹45,000 – ₹2,20,000</h4>
-    <button onclick="addToCart('Dell', 60000)">Add to Cart</button>
-</div>
+  <section class="brand-section">
+    <div class="brand-container">
+      <!-- Apple -->
+      <div class="brand-card">
+        <img src="images/apple.jpg" />
+        <h3>Apple</h3>
+        <p>MacBook Air & Pro</p>
+        <h4>₹90,000 – ₹2,50,000</h4>
+        <div class="card-footer">
+          <button onclick="addToCart('Apple', 120000)">+</button>
+          <button
+            class="dec-btn"
+            data-brand="Apple"
+            onclick="changeQuantity('Apple', -1)"
+            style="min-width:34px"
+            >-</button
+          >
+          <span class="item-count" data-brand="Apple">0</span>
+        </div>
+      </div>
 
-<!-- HP -->
-<div class="brand-card">
-    <img src="images/hp.jpg">
-    <h3>HP</h3>
-    <p>Pavilion, Victus, Omen</p>
-    <h4>₹40,000 – ₹2,00,000</h4>
-    <button onclick="addToCart('HP', 55000)">Add to Cart</button>
-</div>
+      <!-- Dell -->
+      <div class="brand-card">
+        <img src="images/dell.jpg" />
+        <h3>Dell</h3>
+        <p>Inspiron, XPS, Alienware</p>
+        <h4>₹45,000 – ₹2,20,000</h4>
+        <div class="card-footer">
+          <button onclick="addToCart('Dell', 60000)">+</button>
+          <button
+            class="dec-btn"
+            data-brand="Dell"
+            onclick="changeQuantity('Dell', -1)"
+            style="min-width:34px"
+            >-</button
+          >
+          <span class="item-count" data-brand="Dell">0</span>
+        </div>
+      </div>
 
-<!-- Lenovo -->
-<div class="brand-card">
-    <img src="images/lenovo.jpg">
-    <h3>Lenovo</h3>
-    <p>IdeaPad, ThinkPad, Legion</p>
-    <h4>₹35,000 – ₹1,80,000</h4>
-    <button onclick="addToCart('Lenovo', 50000)">Add to Cart</button>
-</div>
+      <!-- HP -->
+      <div class="brand-card">
+        <img src="images/hp.jpg" />
+        <h3>HP</h3>
+        <p>Pavilion, Victus, Omen</p>
+        <h4>₹40,000 – ₹2,00,000</h4>
+        <div class="card-footer">
+          <button onclick="addToCart('HP', 55000)">+</button>
+          <button
+            class="dec-btn"
+            data-brand="HP"
+            onclick="changeQuantity('HP', -1)"
+            style="min-width:34px"
+            >-</button
+          >
+          <span class="item-count" data-brand="HP">0</span>
+        </div>
+      </div>
 
-<!-- ASUS -->
-<div class="brand-card">
-    <img src="images/asus.jpg">
-    <h3>ASUS</h3>
-    <p>VivoBook, ROG, TUF</p>
-    <h4>₹40,000 – ₹2,10,000</h4>
-    <button onclick="addToCart('ASUS', 58000)">Add to Cart</button>
-</div>
+      <!-- Lenovo -->
+      <div class="brand-card">
+        <img src="images/lenovo.jpg" />
+        <h3>Lenovo</h3>
+        <p>IdeaPad, ThinkPad, Legion</p>
+        <h4>₹35,000 – ₹1,80,000</h4>
+        <div class="card-footer">
+          <button onclick="addToCart('Lenovo', 50000)">+</button>
+          <button
+            class="dec-btn"
+            data-brand="Lenovo"
+            onclick="changeQuantity('Lenovo', -1)"
+            style="min-width:34px"
+            >-</button
+          >
+          <span class="item-count" data-brand="Lenovo">0</span>
+        </div>
+      </div>
 
-<!-- Acer -->
-<div class="brand-card">
-    <img src="images/acer.jpg">
-    <h3>Acer</h3>
-    <p>Aspire, Nitro, Predator</p>
-    <h4>₹30,000 – ₹1,70,000</h4>
-    <button onclick="addToCart('Acer', 45000)">Add to Cart</button>
-</div>
+      <!-- ASUS -->
+      <div class="brand-card">
+        <img src="images/asus.jpg" />
+        <h3>ASUS</h3>
+        <p>VivoBook, ROG, TUF</p>
+        <h4>₹40,000 – ₹2,10,000</h4>
+        <div class="card-footer">
+          <button onclick="addToCart('ASUS', 58000)">+</button>
+          <button
+            class="dec-btn"
+            data-brand="ASUS"
+            onclick="changeQuantity('ASUS', -1)"
+            style="min-width:34px"
+            >-</button
+          >
+          <span class="item-count" data-brand="ASUS">0</span>
+        </div>
+      </div>
 
-<!-- MSI -->
-<div class="brand-card">
-    <img src="images/msi.jpg">
-    <h3>MSI</h3>
-    <p>Gaming & Creator Laptops</p>
-    <h4>₹70,000 – ₹3,00,000</h4>
-    <button onclick="addToCart('MSI', 90000)">Add to Cart</button>
-</div>
+      <!-- Acer -->
+      <div class="brand-card">
+        <img src="images/acer.jpg" />
+        <h3>Acer</h3>
+        <p>Aspire, Nitro, Predator</p>
+        <h4>₹30,000 – ₹1,70,000</h4>
+        <div class="card-footer">
+          <button onclick="addToCart('Acer', 45000)">+</button>
+          <button
+            class="dec-btn"
+            data-brand="Acer"
+            onclick="changeQuantity('Acer', -1)"
+            style="min-width:34px"
+            >-</button
+          >
+          <span class="item-count" data-brand="Acer">0</span>
+        </div>
+      </div>
 
-<!-- Samsung -->
-<div class="brand-card">
-    <img src="images/samsung.jpg">
-    <h3>Samsung</h3>
-    <p>Galaxy Book Series</p>
-    <h4>₹50,000 – ₹1,50,000</h4>
-    <button onclick="addToCart('Samsung', 65000)">Add to Cart</button>
-</div>
+      <!-- MSI -->
+      <div class="brand-card">
+        <img src="images/msi.jpg" />
+        <h3>MSI</h3>
+        <p>Gaming & Creator Laptops</p>
+        <h4>₹70,000 – ₹3,00,000</h4>
+        <div class="card-footer">
+          <button onclick="addToCart('MSI', 90000)">+</button>
+          <button
+            class="dec-btn"
+            data-brand="MSI"
+            onclick="changeQuantity('MSI', -1)"
+            style="min-width:34px"
+            >-</button
+          >
+          <span class="item-count" data-brand="MSI">0</span>
+        </div>
+      </div>
 
-<!-- Microsoft -->
-<div class="brand-card">
-    <img src="images/microsoft.jpg">
-    <h3>Microsoft</h3>
-    <p>Surface Laptops</p>
-    <h4>₹75,000 – ₹2,20,000</h4>
-    <button onclick="addToCart('Microsoft', 90000)">Add to Cart</button>
-</div>
+      <!-- Samsung -->
+      <div class="brand-card">
+        <img src="images/samsung.jpg" />
+        <h3>Samsung</h3>
+        <p>Galaxy Book Series</p>
+        <h4>₹50,000 – ₹1,50,000</h4>
+        <div class="card-footer">
+          <button onclick="addToCart('Samsung', 65000)">+</button>
+          <button
+            class="dec-btn"
+            data-brand="Samsung"
+            onclick="changeQuantity('Samsung', -1)"
+            style="min-width:34px"
+            >-</button
+          >
+          <span class="item-count" data-brand="Samsung">0</span>
+        </div>
+      </div>
 
-<!-- LG -->
-<div class="brand-card">
-    <img src="images/lg.jpg">
-    <h3>LG</h3>
-    <p>LG Gram Ultra-light</p>
-    <h4>₹80,000 – ₹1,90,000</h4>
-    <button onclick="addToCart('LG', 95000)">Add to Cart</button>
-</div>
+      <!-- Microsoft -->
+      <div class="brand-card">
+        <img src="images/microsoft.jpg" />
+        <h3>Microsoft</h3>
+        <p>Surface Laptops</p>
+        <h4>₹75,000 – ₹2,20,000</h4>
+        <div class="card-footer">
+          <button onclick="addToCart('Microsoft', 90000)">+</button>
+          <button
+            class="dec-btn"
+            data-brand="Microsoft"
+            onclick="changeQuantity('Microsoft', -1)"
+            style="min-width:34px"
+            >-</button
+          >
+          <span class="item-count" data-brand="Microsoft">0</span>
+        </div>
+      </div>
 
-<!-- Razer -->
-<div class="brand-card">
-    <img src="images/razer.jpg">
-    <h3>Razer</h3>
-    <p>High-end Gaming Laptops</p>
-    <h4>₹1,50,000 – ₹4,00,000</h4>
-    <button onclick="addToCart('Razer', 180000)">Add to Cart</button>
-</div>
+      <!-- LG -->
+      <div class="brand-card">
+        <img src="images/lg.jpg" />
+        <h3>LG</h3>
+        <p>LG Gram Ultra-light</p>
+        <h4>₹80,000 – ₹1,90,000</h4>
+        <div class="card-footer">
+          <button onclick="addToCart('LG', 95000)">+</button>
+          <button
+            class="dec-btn"
+            data-brand="LG"
+            onclick="changeQuantity('LG', -1)"
+            style="min-width:34px"
+            >-</button
+          >
+          <span class="item-count" data-brand="LG">0</span>
+        </div>
+      </div>
 
-</div>
-</section>
+      <!-- Razer -->
+      <div class="brand-card">
+        <img src="images/razer.jpg" />
+        <h3>Razer</h3>
+        <p>High-end Gaming Laptops</p>
+        <h4>₹1,50,000 – ₹4,00,000</h4>
+        <div class="card-footer">
+          <button onclick="addToCart('Razer', 180000)">+</button>
+          <button
+            class="dec-btn"
+            data-brand="Razer"
+            onclick="changeQuantity('Razer', -1)"
+            style="min-width:34px"
+            >-</button
+          >
+          <span class="item-count" data-brand="Razer">0</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- Cart -->
-<div id="cartBox" class="cart-box">
+  <!-- Cart -->
+  <div id="cartBox" class="cart-box">
     <h2>Your Cart</h2>
     <ul id="cartItems"></ul>
     <h3 id="totalPrice"></h3>
     <button onclick="placeOrder()">Place Order</button>
-</div>
+  </div>
 
-<footer>
+  <footer>
     <p>© 2025 Global Laptop Showcase</p>
-</footer>
+  </footer>
 
-<script src="script.js"></script>
+  <script src="cart.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    // Toggle user popup visibility
+    const userProfileBtn = document.getElementById("userProfileBtn");
+    const userPopup = document.getElementById("userPopup");
+    const userNameEl = document.getElementById("userName");
+    const userEmailEl = document.getElementById("userEmail");
+    const ordersPageBtn = document.getElementById("ordersPageBtn");
+
+    userProfileBtn.addEventListener("click", () => {
+      if (userPopup.style.display === "block") {
+        userPopup.style.display = "none";
+      } else {
+        userPopup.style.display = "block";
+      }
+    });
+
+    // Close popup if clicked outside
+    document.addEventListener("click", (e) => {
+      if (!userPopup.contains(e.target) && e.target !== userProfileBtn) {
+        userPopup.style.display = "none";
+      }
+    });
+
+    // Load user data from localStorage and display in popup
+    function loadUserProfile() {
+      try {
+        const rawUser = localStorage.getItem("authUser");
+        if (rawUser) {
+          const user = JSON.parse(rawUser);
+          userNameEl.textContent = user.name || user.email || "User";
+          userEmailEl.textContent = user.email || "";
+          ordersPageBtn.disabled = false;
+          ordersPageBtn.style.backgroundColor = "#1976d2";
+          ordersPageBtn.style.cursor = "pointer";
+        } else {
+          userNameEl.textContent = "Not signed in";
+          userEmailEl.textContent = "";
+          ordersPageBtn.disabled = true;
+          ordersPageBtn.style.backgroundColor = "#aaa";
+          ordersPageBtn.style.cursor = "default";
+        }
+      } catch {
+        userNameEl.textContent = "Error loading user info";
+        userEmailEl.textContent = "";
+        ordersPageBtn.disabled = true;
+        ordersPageBtn.style.backgroundColor = "#aaa";
+        ordersPageBtn.style.cursor = "default";
+      }
+    }
+
+    // Redirect to orders page when button clicked
+    ordersPageBtn.addEventListener("click", () => {
+      if (!ordersPageBtn.disabled) {
+        window.location.href = "orders.html";
+      }
+    });
+
+    loadUserProfile();
+  </script>
 </body>
+
 </html>
