@@ -82,6 +82,29 @@
       background-color: #135aab;
     }
 
+    /* Logout button (red theme) */
+    #userPopup #logoutBtn {
+      background: #d32f2f;
+      border: none;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      width: 100%;
+      margin-top: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    #userPopup #logoutBtn:disabled {
+      background-color: #aaa;
+      cursor: default;
+    }
+
+    #userPopup #logoutBtn:hover:not(:disabled) {
+      background-color: #b71c1c;
+    }
+
     header {
       display: flex;
       align-items: center;
@@ -191,6 +214,7 @@
           Name</div>
         <div id="userEmail" style="color:#555; margin-bottom:12px;">user@example.com</div>
         <button id="ordersPageBtn">View Orders</button>
+        <button id="logoutBtn">Logout</button>
       </div>
     </div>
   </header>
@@ -440,6 +464,7 @@
     const userNameEl = document.getElementById("userName");
     const userEmailEl = document.getElementById("userEmail");
     const ordersPageBtn = document.getElementById("ordersPageBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
 
     userProfileBtn.addEventListener("click", () => {
       if (userPopup.style.display === "block") {
@@ -467,12 +492,22 @@
           ordersPageBtn.disabled = false;
           ordersPageBtn.style.backgroundColor = "#1976d2";
           ordersPageBtn.style.cursor = "pointer";
+          if (logoutBtn) {
+            logoutBtn.disabled = false;
+            logoutBtn.style.backgroundColor = "#d32f2f";
+            logoutBtn.style.cursor = "pointer";
+          }
         } else {
           userNameEl.textContent = "Not signed in";
           userEmailEl.textContent = "";
           ordersPageBtn.disabled = true;
           ordersPageBtn.style.backgroundColor = "#aaa";
           ordersPageBtn.style.cursor = "default";
+          if (logoutBtn) {
+            logoutBtn.disabled = true;
+            logoutBtn.style.backgroundColor = "#aaa";
+            logoutBtn.style.cursor = "default";
+          }
         }
       } catch {
         userNameEl.textContent = "Error loading user info";
@@ -480,6 +515,11 @@
         ordersPageBtn.disabled = true;
         ordersPageBtn.style.backgroundColor = "#aaa";
         ordersPageBtn.style.cursor = "default";
+        if (logoutBtn) {
+          logoutBtn.disabled = true;
+          logoutBtn.style.backgroundColor = "#aaa";
+          logoutBtn.style.cursor = "default";
+        }
       }
     }
 
@@ -489,6 +529,19 @@
         window.location.href = "orders.html";
       }
     });
+
+    // Logout handler: clear auth and redirect to login
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+        if (!logoutBtn.disabled) {
+          localStorage.removeItem("authUser");
+          localStorage.removeItem("token");
+          userPopup.style.display = "none";
+          loadUserProfile();
+          window.location.href = "login.html";
+        }
+      });
+    }
 
     loadUserProfile();
   </script>
